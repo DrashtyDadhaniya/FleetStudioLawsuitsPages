@@ -1,9 +1,13 @@
 package dd.fleetstudio.TestComponents;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -27,6 +31,7 @@ import dd.fleetstudio.PageObjects.CheckOutPage;
 import dd.fleetstudio.PageObjects.LawsuitsPages;
 import dd.fleetstudio.PageObjects.GreenCartHomePage;
 import dd.fleetstudio.PageObjects.ProjectsPage;
+import dd.fleetstudio.PageObjects.LawsuitsPages.Info;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -130,6 +135,21 @@ public class BaseTest {
 			}
 		}
 		
+	}
+	
+	public static ArrayList<String> readFile() throws IOException
+	{
+		ArrayList<String> expectedData = new ArrayList<String>();
+		
+		BufferedReader reader = new BufferedReader(new FileReader("ExpectedData.txt"));
+		String line;
+		
+		while ((line = reader.readLine()) != null) {
+			expectedData.add(line);
+		}
+		reader.close();
+		
+		return expectedData;
 	}
 	
 	//Method to select radio button
