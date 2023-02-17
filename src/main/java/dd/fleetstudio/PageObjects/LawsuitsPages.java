@@ -26,7 +26,7 @@ public class LawsuitsPages extends CommonMethods {
 
 	public class Info {
 
-		String pageHeader;
+		public String pageHeader;
 		String plaintiffName;
 		String filingdate;
 		String stateOffiling;
@@ -115,12 +115,12 @@ public class LawsuitsPages extends CommonMethods {
 			cookiesButton.click();
 		}
 		
-		int pageCount = 0;
+		int pageCount = 2;
 
-		while(pageCount < 2) {
-			int articleCount = 0;
+		while(pageCount > 0) {
+			pageCount--;
 			
-			pageCount++;
+			int articleCount = 2;
 			for (WebElement e : allLinks) {
 
 				// Opens each link in separate tab
@@ -144,8 +144,8 @@ public class LawsuitsPages extends CommonMethods {
 				driver.close();
 				driver.switchTo().window(parentId);
 
-				articleCount++;
-				if (articleCount >= 2)
+				articleCount--;
+				if (articleCount <= 0)
 					break;
 			}
 			

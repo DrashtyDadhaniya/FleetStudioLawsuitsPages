@@ -40,7 +40,7 @@ public class BaseTest {
 	public Properties properties;
 	public LawsuitsPages lawsuitsPages;
 	
-	@BeforeTest(alwaysRun = true)
+	@BeforeTest(alwaysRun = true, enabled = true)
 	public LawsuitsPages launchApplication() throws IOException {
 		driver = initializeDriver();										//Initialize Drivers
 		lawsuitsPages = new LawsuitsPages(driver);
@@ -137,11 +137,12 @@ public class BaseTest {
 		
 	}
 	
-	public static ArrayList<String> readFile() throws IOException
+	public static ArrayList<String> readExpectedDataFile() throws IOException
 	{
 		ArrayList<String> expectedData = new ArrayList<String>();
 		
-		BufferedReader reader = new BufferedReader(new FileReader("ExpectedData.txt"));
+		//C:\Users\drashty.dadhaniya\eclipse-workspace\FleetStudioLawsuitsPages\src\main\java\dd\fleetstudio\TestComponents\expectedData.txt
+		BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\ExpectedData.txt"));
 		String line;
 		
 		while ((line = reader.readLine()) != null) {
