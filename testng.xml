@@ -3,21 +3,14 @@
 <suite name="Suite">
 
 	<listeners>
-		<listener class-name="dd.Insure.TestComponents.Listeners"></listener>
+		<listener class-name="dd.fleetstudio.TestComponents.Listeners"></listener>
 	</listeners>
 
-	<test thread-count="5" name="HomePageTest">
+	<test thread-count="5" name="LawsuitsPagesTest">
 		<classes>
-			<class name="dd.Insure.Tests.HomePageTest" />
-			
+			<class name="dd.fleetstudio.Tests.LawsuitsPagesTest" />
 		</classes>
 		
 	</test> <!-- Test -->
-
-	<test thread-count="5" name="NextButtonTest">
-		<classes>
-			<class name="dd.Insure.Tests.NextButtonTest" />
-		</classes>
-	</test>
 
 </suite> <!-- Suite -->

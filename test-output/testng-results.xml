@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-17T19:13:05 IST" name="Default suite" finished-at="2023-02-17T19:14:21 IST" duration-ms="76863">
+  <suite started-at="2023-02-17T19:31:32 IST" name="Suite" finished-at="2023-02-17T19:32:48 IST" duration-ms="76337">
     <groups>
     </groups>
-    <test started-at="2023-02-17T19:13:05 IST" name="Default test" finished-at="2023-02-17T19:14:21 IST" duration-ms="76863">
+    <test started-at="2023-02-17T19:31:32 IST" name="LawsuitsPagesTest" finished-at="2023-02-17T19:32:48 IST" duration-ms="76337">
       <class name="dd.fleetstudio.Tests.LawsuitsPagesTest">
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:dd.fleetstudio.Tests.LawsuitsPagesTest@4f6ee6e4]" started-at="2023-02-17T19:13:05 IST" name="launchApplication" finished-at="2023-02-17T19:13:29 IST" duration-ms="24066" status="PASS">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:dd.fleetstudio.Tests.LawsuitsPagesTest@25be7b63]" started-at="2023-02-17T19:31:32 IST" name="launchApplication" finished-at="2023-02-17T19:31:52 IST" duration-ms="19987" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="Lawsuits()[pri:1, instance:dd.fleetstudio.Tests.LawsuitsPagesTest@4f6ee6e4]" started-at="2023-02-17T19:13:29 IST" name="Lawsuits" finished-at="2023-02-17T19:14:21 IST" duration-ms="52654" status="PASS">
+        <test-method signature="Lawsuits()[pri:1, instance:dd.fleetstudio.Tests.LawsuitsPagesTest@25be7b63]" started-at="2023-02-17T19:31:52 IST" name="Lawsuits" finished-at="2023-02-17T19:32:48 IST" duration-ms="56175" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Lawsuits -->
       </class> <!-- dd.fleetstudio.Tests.LawsuitsPagesTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- LawsuitsPagesTest -->
+  </suite> <!-- Suite -->
 </testng-results>
