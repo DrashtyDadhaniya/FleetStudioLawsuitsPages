@@ -23,7 +23,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import dd.fleetstudio.PageObjects.LawsuitsPages;
@@ -35,7 +37,7 @@ public class BaseTest {
 	public Properties properties;
 	public LawsuitsPages lawsuitsPages;
 	
-	@BeforeTest(alwaysRun = true, enabled = true)
+	@BeforeMethod(alwaysRun = true, enabled = true)
 	public LawsuitsPages launchApplication() throws IOException {
 		driver = initializeDriver();										//Initialize Drivers
 		lawsuitsPages = new LawsuitsPages(driver);
@@ -44,7 +46,7 @@ public class BaseTest {
 	}
 	
 
-	@AfterTest(alwaysRun = true, enabled = false)
+	@AfterMethod(alwaysRun = true, enabled = true)
 	public void tearDown() {
 		driver.quit();
 	}
