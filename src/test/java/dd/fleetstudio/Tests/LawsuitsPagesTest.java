@@ -21,14 +21,11 @@ public class LawsuitsPagesTest extends BaseTest {
 		{
 			i.print();	
 		}
+		
 		ArrayList<String> expectedData = readExpectedDataFile();
 		for (int i = 0; i < allInfo.size(); i++) {
 			Assert.assertEquals(allInfo.get(i).pageHeader, expectedData.get(i));
 		}
-//		for(String line : expectedData)
-//		{
-//			System.out.println(line);
-//		}
 
 	}
 

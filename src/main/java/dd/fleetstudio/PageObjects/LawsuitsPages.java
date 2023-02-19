@@ -24,102 +24,40 @@ public class LawsuitsPages extends CommonMethods {
 		PageFactory.initElements(driver, this);
 	}
 
-	public class Info {
-
-		public String pageHeader;
-		String plaintiffName;
-		String filingdate;
-		String stateOffiling;
-
-		String defendantName;
-		String website;
-		String industry;
-		String summary;
-
-		public Info(String pageHeader, String plaintiffName, String filingdate, String stateOffiling,
-				String defendantName, String website, String industry, String summary) {
-
-			this.pageHeader = pageHeader;
-			this.plaintiffName = plaintiffName;
-			this.filingdate = filingdate;
-			this.stateOffiling = stateOffiling;
-
-			this.defendantName = defendantName;
-			this.website = website;
-			this.industry = industry;
-			this.summary = summary;
-		}
-
-		public void print() {
-			System.out.println(pageHeader);
-
-			System.out.println("	Plaintiff : ");
-			System.out.println("		" + this.plaintiffName);
-			System.out.println("		" + this.filingdate);
-			System.out.println("		" + this.stateOffiling);
-
-			System.out.println("	Defendant : ");
-			System.out.println("		" + this.defendantName);
-			System.out.println("		" + this.website);
-			System.out.println("		" + this.industry);
-			System.out.println("		" + this.summary);
-			System.out.println();
-		}
-	}
-
+	
 	@FindBy(css = "div.post-item a")
 	private List<WebElement> allLinks;
 
 	@FindBy(css = "span#hs_cos_wrapper_name")
 	private WebElement pageHeader;
 
-	@FindBy(xpath = "//div[@class='plaintiff_block']//li[1]")
-	private WebElement plaintiffName;
+	@FindBy(xpath = "//div[@class='plaintiff_content']//li")
+	private List<WebElement> plaintiffinfo;
 
-	@FindBy(xpath = "//div[@class='plaintiff_block']//li[2]")
-	private WebElement filingDate;
-
-	@FindBy(xpath = "//div[@class='plaintiff_block']//li[3]")
-	private WebElement stateOffiling;
-
-	@FindBy(xpath = "//div[@class='defendant_block']//li[1]")
-	private WebElement defendantName;
-
-	@FindBy(xpath = "//div[@class='defendant_block']//li[2]")
-	private WebElement website;
-
-	@FindBy(xpath = "//div[@class='defendant_block']//li[3]")
-	private WebElement industry;
-
-	@FindBy(xpath = "//div[@class='defendant_block']//li[4]")
-	private WebElement summary;
+	@FindBy(xpath = "//div[@class='defendant_content']//li")
+	private List<WebElement> defendantinfo;
 
 	@FindBy(css = ".next-link")
 	private WebElement nextButton;
 
-	@FindBy(css = "a.prev-link")
-	private WebElement previousButton;
-	
 	@FindBy(css = "a#hs-eu-confirmation-button")
 	private WebElement cookiesButton;
-
 	
+
 	public ArrayList<Info> GetPageHeaderSections() {
 
 		ArrayList<Info> al = new ArrayList<Info>();
-
 		waitForListOfWebElementsToAppear(allLinks);
-		
-		if(cookiesButton.isDisplayed())
-		{
+
+		if (cookiesButton.isDisplayed()) {
 			cookiesButton.click();
 		}
-		
+
 		int pageCount = 2;
 
-		while(pageCount > 0) {
+		while (pageCount > 0) {
 			pageCount--;
-			
+
 			int articleCount = 2;
 			for (WebElement e : allLinks) {
 
@@ -136,9 +74,20 @@ public class LawsuitsPages extends CommonMethods {
 				driver.switchTo().window(childId);
 
 				waitForWebElementToAppear(pageHeader);
-				Info infoObj = new Info(pageHeader.getText(), plaintiffName.getText(), filingDate.getText(),
-						stateOffiling.getText(), defendantName.getText(), website.getText(), industry.getText(),
-						summary.getText());
+
+				ArrayList<String> plaintiffArray = new ArrayList<String>();
+
+				for (WebElement i : plaintiffinfo) {
+					plaintiffArray.add(i.getText());
+				}
+
+				ArrayList<String> defendantArray = new ArrayList<String>();
+
+				for (WebElement i : defendantinfo) {
+					defendantArray.add(i.getText());
+				}
+
+				Info infoObj = new Info(pageHeader.getText(), plaintiffArray, defendantArray);
 
 				al.add(infoObj);
 				driver.close();
@@ -148,19 +97,16 @@ public class LawsuitsPages extends CommonMethods {
 				if (articleCount <= 0)
 					break;
 			}
-			
-			JavascriptExecutor js = (JavascriptExecutor)driver;
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView();", nextButton);
-			
 
-
-			if(nextButton.isDisplayed()) {
-				System.out.println("********Next button to be clicked**********");
-				// nextButton.click();
+			if (nextButton.isDisplayed()) {
+				
 				js.executeScript("arguments[0].click();", nextButton);
-				System.out.println("********Next button clicked**********");
+				
 			} else {
-				System.out.println("********Next button not displayed**********");
+				
 				break;
 			}
 		}
@@ -170,4 +116,36 @@ public class LawsuitsPages extends CommonMethods {
 	public void goTo() {
 		driver.get("https://www.accessibility.com/digital-lawsuits");
 	}
+	
+	
+	public class Info {
+
+		public String pageHeader;
+		ArrayList<String> plaintiffArray;
+		ArrayList<String> defendantArray;
+
+		public Info(String pageHeader, ArrayList<String> plaintiffArray, ArrayList<String> defendantArray) {
+
+			this.pageHeader = pageHeader;
+			this.plaintiffArray = plaintiffArray;
+			this.defendantArray = defendantArray;
+		}
+
+		public void print() {
+			System.out.println(pageHeader);
+
+			System.out.println("	Plaintiff : ");
+			for (String s : plaintiffArray) {
+				System.out.println("		"+s);
+			}
+
+			System.out.println("	Defendant : ");
+			for (String s : defendantArray) {
+				System.out.println("		"+s);
+			}
+
+			System.out.println();
+		}
+	}
+	
 }
